@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="semantic_search_wizard_view_form" model="ir.ui.view">
+        <field name="name">semantic_record_search.semantic_search_wizard.form</field>
+        <field name="model">semantic_record_search.semantic_search_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Semantic Search">
+                <group>
+                    <field name="query_text"/>
+                    <field name="limit"/>
+                </group>
+                <footer>
+                    <button string="Search" type="object" name="action_search" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_semantic_search_wizard" model="ir.actions.act_window">
+        <field name="name">Semantic Search</field>
+        <field name="res_model">semantic_record_search.semantic_search_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

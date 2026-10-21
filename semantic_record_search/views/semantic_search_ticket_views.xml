@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="semantic_search_ticket_list_view" model="ir.ui.view">
+        <field name="name">semantic_record_search.helpdesk.ticket.list</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="arch" type="xml">
+            <list create="false">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="team_id"/>
+                <field name="stage_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_semantic_search_home" model="ir.actions.act_window">
+        <field name="name">Semantic Record Search</field>
+        <field name="res_model">helpdesk.ticket</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('id', 'in', [])]</field>
+        <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p>Press the "Search" button above to find semantically similar tickets.</p>
+        </field>
+    </record>
+
+    <record id="action_semantic_search_home_list_view" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="semantic_search_ticket_list_view"/>
+        <field name="act_window_id" ref="action_semantic_search_home"/>
+    </record>
+</odoo>

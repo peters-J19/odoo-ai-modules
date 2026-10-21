@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+    <!-- ================= Skill taxonomy (module-owned, not stock hr_skills xmlids) ================= -->
+    <record id="hr_skill_type_helpdesk" model="hr.skill.type">
+        <field name="name">Helpdesk Specialties</field>
+    </record>
+    <record id="hr_skill_level_familiar" model="hr.skill.level">
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="name">Familiar</field>
+        <field name="level_progress">30</field>
+    </record>
+    <record id="hr_skill_level_proficient" model="hr.skill.level">
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="name">Proficient</field>
+        <field name="level_progress">65</field>
+        <field name="default_level" eval="True"/>
+    </record>
+    <record id="hr_skill_level_expert" model="hr.skill.level">
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="name">Expert</field>
+        <field name="level_progress">100</field>
+    </record>
+
+    <record id="hr_skill_payments" model="hr.skill">
+        <field name="name">Payments &amp; Checkout</field>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+    </record>
+    <record id="hr_skill_networking" model="hr.skill">
+        <field name="name">Networking &amp; Remote Access</field>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+    </record>
+    <record id="hr_skill_billing" model="hr.skill">
+        <field name="name">Billing &amp; Invoicing</field>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+    </record>
+    <record id="hr_skill_mobile" model="hr.skill">
+        <field name="name">Mobile Engineering</field>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+    </record>
+    <record id="hr_skill_data" model="hr.skill">
+        <field name="name">Data &amp; Exports</field>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+    </record>
+    <record id="hr_skill_care" model="hr.skill">
+        <field name="name">General Customer Care</field>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+    </record>
+    <record id="hr_skill_sales" model="hr.skill">
+        <field name="name">Sales Support</field>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+    </record>
+
+    <!-- ================= 8 demo people: res.users + hr.employee + hr.employee.skill ================= -->
+
+    <record id="res_users_alex" model="res.users">
+        <field name="name">Alex Rivera</field>
+        <field name="login">alex.rivera@demo.helpdeskai.example</field>
+        <field name="email">alex.rivera@demo.helpdeskai.example</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_user'), ref('helpdesk.group_helpdesk_user')])]"/>
+    </record>
+    <record id="hr_employee_alex" model="hr.employee">
+        <field name="name">Alex Rivera</field>
+        <field name="user_id" ref="res_users_alex"/>
+    </record>
+    <record id="hr_employee_skill_alex" model="hr.employee.skill">
+        <field name="employee_id" ref="hr_employee_alex"/>
+        <field name="skill_id" ref="hr_skill_payments"/>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="skill_level_id" ref="hr_skill_level_expert"/>
+    </record>
+
+    <record id="res_users_priya" model="res.users">
+        <field name="name">Priya Nandan</field>
+        <field name="login">priya.nandan@demo.helpdeskai.example</field>
+        <field name="email">priya.nandan@demo.helpdeskai.example</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_user'), ref('helpdesk.group_helpdesk_user')])]"/>
+    </record>
+    <record id="hr_employee_priya" model="hr.employee">
+        <field name="name">Priya Nandan</field>
+        <field name="user_id" ref="res_users_priya"/>
+    </record>
+    <record id="hr_employee_skill_priya" model="hr.employee.skill">
+        <field name="employee_id" ref="hr_employee_priya"/>
+        <field name="skill_id" ref="hr_skill_networking"/>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="skill_level_id" ref="hr_skill_level_expert"/>
+    </record>
+
+    <record id="res_users_jordan" model="res.users">
+        <field name="name">Jordan Lee</field>
+        <field name="login">jordan.lee@demo.helpdeskai.example</field>
+        <field name="email">jordan.lee@demo.helpdeskai.example</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_user'), ref('helpdesk.group_helpdesk_user')])]"/>
+    </record>
+    <record id="hr_employee_jordan" model="hr.employee">
+        <field name="name">Jordan Lee</field>
+        <field name="user_id" ref="res_users_jordan"/>
+    </record>
+    <record id="hr_employee_skill_jordan" model="hr.employee.skill">
+        <field name="employee_id" ref="hr_employee_jordan"/>
+        <field name="skill_id" ref="hr_skill_data"/>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="skill_level_id" ref="hr_skill_level_proficient"/>
+    </record>
+
+    <record id="res_users_dana" model="res.users">
+        <field name="name">Dana Whitfield</field>
+        <field name="login">dana.whitfield@demo.helpdeskai.example</field>
+        <field name="email">dana.whitfield@demo.helpdeskai.example</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_user'), ref('helpdesk.group_helpdesk_user')])]"/>
+    </record>
+    <record id="hr_employee_dana" model="hr.employee">
+        <field name="name">Dana Whitfield</field>
+        <field name="user_id" ref="res_users_dana"/>
+    </record>
+    <record id="hr_employee_skill_dana" model="hr.employee.skill">
+        <field name="employee_id" ref="hr_employee_dana"/>
+        <field name="skill_id" ref="hr_skill_mobile"/>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="skill_level_id" ref="hr_skill_level_expert"/>
+    </record>
+
+    <record id="res_users_sam" model="res.users">
+        <field name="name">Sam Okafor</field>
+        <field name="login">sam.okafor@demo.helpdeskai.example</field>
+        <field name="email">sam.okafor@demo.helpdeskai.example</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_user'), ref('helpdesk.group_helpdesk_user')])]"/>
+    </record>
+    <record id="hr_employee_sam" model="hr.employee">
+        <field name="name">Sam Okafor</field>
+        <field name="user_id" ref="res_users_sam"/>
+    </record>
+    <record id="hr_employee_skill_sam" model="hr.employee.skill">
+        <field name="employee_id" ref="hr_employee_sam"/>
+        <field name="skill_id" ref="hr_skill_billing"/>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="skill_level_id" ref="hr_skill_level_expert"/>
+    </record>
+
+    <record id="res_users_taylor" model="res.users">
+        <field name="name">Taylor Brooks</field>
+        <field name="login">taylor.brooks@demo.helpdeskai.example</field>
+        <field name="email">taylor.brooks@demo.helpdeskai.example</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_user'), ref('helpdesk.group_helpdesk_user')])]"/>
+    </record>
+    <record id="hr_employee_taylor" model="hr.employee">
+        <field name="name">Taylor Brooks</field>
+        <field name="user_id" ref="res_users_taylor"/>
+    </record>
+    <record id="hr_employee_skill_taylor" model="hr.employee.skill">
+        <field name="employee_id" ref="hr_employee_taylor"/>
+        <field name="skill_id" ref="hr_skill_care"/>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="skill_level_id" ref="hr_skill_level_proficient"/>
+    </record>
+
+    <record id="res_users_riley" model="res.users">
+        <field name="name">Riley Chen</field>
+        <field name="login">riley.chen@demo.helpdeskai.example</field>
+        <field name="email">riley.chen@demo.helpdeskai.example</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_user'), ref('helpdesk.group_helpdesk_user')])]"/>
+    </record>
+    <record id="hr_employee_riley" model="hr.employee">
+        <field name="name">Riley Chen</field>
+        <field name="user_id" ref="res_users_riley"/>
+    </record>
+    <record id="hr_employee_skill_riley" model="hr.employee.skill">
+        <field name="employee_id" ref="hr_employee_riley"/>
+        <field name="skill_id" ref="hr_skill_care"/>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="skill_level_id" ref="hr_skill_level_expert"/>
+    </record>
+
+    <record id="res_users_morgan" model="res.users">
+        <field name="name">Morgan Diaz</field>
+        <field name="login">morgan.diaz@demo.helpdeskai.example</field>
+        <field name="email">morgan.diaz@demo.helpdeskai.example</field>
+        <field name="group_ids" eval="[(6, 0, [ref('base.group_user'), ref('helpdesk.group_helpdesk_user')])]"/>
+    </record>
+    <record id="hr_employee_morgan" model="hr.employee">
+        <field name="name">Morgan Diaz</field>
+        <field name="user_id" ref="res_users_morgan"/>
+    </record>
+    <record id="hr_employee_skill_morgan" model="hr.employee.skill">
+        <field name="employee_id" ref="hr_employee_morgan"/>
+        <field name="skill_id" ref="hr_skill_sales"/>
+        <field name="skill_type_id" ref="hr_skill_type_helpdesk"/>
+        <field name="skill_level_id" ref="hr_skill_level_expert"/>
+    </record>
+
+    <!-- ================= Wire the 8 people into the 3 real teams (add, never replace) ================= -->
+    <!-- helpdesk.helpdesk_team1 = Customer Care, team2 = IT Support, team3 = VIP Support -->
+
+    <record id="helpdesk.helpdesk_team2" model="helpdesk.team">
+        <field name="member_ids" eval="[
+            Command.link(ref('res_users_alex')),
+            Command.link(ref('res_users_priya')),
+            Command.link(ref('res_users_jordan')),
+            Command.link(ref('res_users_dana')),
+            Command.link(ref('res_users_morgan')),
+        ]"/>
+    </record>
+    <record id="helpdesk.helpdesk_team1" model="helpdesk.team">
+        <field name="member_ids" eval="[
+            Command.link(ref('res_users_sam')),
+            Command.link(ref('res_users_taylor')),
+            Command.link(ref('res_users_morgan')),
+        ]"/>
+    </record>
+    <record id="helpdesk.helpdesk_team3" model="helpdesk.team">
+        <field name="member_ids" eval="[
+            Command.link(ref('res_users_riley')),
+            Command.link(ref('res_users_morgan')),
+        ]"/>
+    </record>
+
+    <!-- ================= One repeat customer, for the customer-history scenario ================= -->
+    <record id="res_partner_repeat_customer" model="res.partner">
+        <field name="name">Nadia Ferrer</field>
+        <field name="email">nadia.ferrer@repeatcustomer.example</field>
+    </record>
+
+    <!-- ================= 12 historical, resolved tickets (Tier 1/2 fields left blank - legacy data) ================= -->
+
+    <record id="demo_ticket_1" model="helpdesk.ticket">
+        <field name="name">Checkout returns 500 error after promo code applied</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team2"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_name">Priya's Bakery Supply</field>
+        <field name="partner_email">orders@priyasbakery.example</field>
+        <field name="description" type="html">
+<p>RESOLVED - root cause: a caching bug in the promo-code validation service
+served stale/invalid tokens after high traffic, causing checkout to fail.
+Fixed by clearing the Redis cache for that service and redeploying with the
+cache TTL reduced from 1 hour to 5 minutes.</p>
+<p>Customer reported checkout failing with a generic error right after
+entering "SAVE20" at checkout. First suspected a front-end bug in the discount
+widget - ruled out after confirming the error was server-side (a 500, not a
+validation message). Logs traced it to the promo-validation service returning
+stale cached responses under load. Cleared Redis, redeployed with the shorter
+TTL. Customer confirmed checkout worked immediately after; no further reports
+since.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_2" model="helpdesk.ticket">
+        <field name="name">VPN keeps disconnecting for remote employees</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team2"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_name">Harlan Voss</field>
+        <field name="partner_email">h.voss@example.com</field>
+        <field name="description" type="html">
+<p>RESOLVED - root cause: outdated firmware on the VPN concentrator dropped
+idle sessions after roughly 10 minutes. Fixed with a firmware update and by
+raising the session timeout to 4 hours.</p>
+<p>Multiple remote staff reported being kicked off VPN repeatedly through the
+day. Initial guess was a client-side network issue - ruled out after
+reproducing the drop on wired connections too. Concentrator logs showed forced
+disconnects matching a known firmware bug. Updated firmware, raised the idle
+timeout. No recurrence reported in the two weeks since.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_3" model="helpdesk.ticket">
+        <field name="name">Invoice total doesn't match line items, overcharged</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team1"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_name">Greenfield Logistics</field>
+        <field name="partner_email">accounts@greenfieldlogistics.example</field>
+        <field name="description" type="html">
+<p>RESOLVED - root cause: a regional tax-calculation bug applied VAT twice for
+customers billed under EU region code "DE-BY" specifically. Refunded the
+difference and filed an engineering ticket that has since patched the tax
+engine for that region.</p>
+<p>Customer flagged their invoice total was higher than the sum of line items
+plus expected tax. Recalculated manually and found VAT applied at both the
+line and invoice level, but only for this specific region code - other
+regions were unaffected. Refunded the overcharge same day.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_4" model="helpdesk.ticket">
+        <field name="name">Password reset email never arrives</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team1"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_name">Wen Zhao</field>
+        <field name="partner_email">wen.zhao@example.com</field>
+        <field name="description" type="html">
+<p>RESOLVED - root cause: the reset email was landing in spam due to a missing
+SPF record on the sending domain. Added the SPF record.</p>
+<p>Customer said they requested a reset three times with nothing arriving.
+Confirmed the emails were sending successfully on our end. Asked the customer
+to check spam - found there. Diagnosed the missing SPF record was hurting
+deliverability broadly, not just for this customer, and added it. Customer
+confirmed receiving the email normally afterward.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_5" model="helpdesk.ticket">
+        <field name="name">CSV export is corrupted for large datasets</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team2"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_name">Blue Ridge Realty Group</field>
+        <field name="partner_email">it@blueridgerealty.example</field>
+        <field name="description" type="html">
+<p>RESOLVED - root cause: a pagination bug in the export job dropped and
+duplicated rows past roughly 10,000 records. Fixed by correcting an
+off-by-one error in the batch-offset calculation.</p>
+<p>Customer's export of their full contact list came back with missing and
+duplicate rows past a certain point. Reproduced with a large internal dataset
+and confirmed it only affected exports over roughly 10k rows, pointing to a
+pagination issue. Fixed the offset logic and verified with a 50,000-row
+export.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_6" model="helpdesk.ticket">
+        <field name="name">Customer told a refund was guaranteed on a non-refundable annual plan</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team1"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_name">Otto Berg</field>
+        <field name="partner_email">otto.berg@example.com</field>
+        <field name="description" type="html">
+<p>IMPORTANT - this was NOT a standard resolution and is NOT policy precedent.
+An agent incorrectly told the customer their non-refundable annual plan was
+refundable, before manager review. A full refund was granted afterward ONLY as
+a ONE-OFF GOODWILL EXCEPTION, specifically because the incorrect commitment
+had already been made to the customer in writing by our own agent.</p>
+<p>Customer asked to cancel and was told by an agent they'd receive a full
+refund. Manager review confirmed the annual plan is explicitly non-refundable
+per the terms the customer agreed to at signup. Because our own agent had made
+the incorrect promise in writing, leadership approved the refund as a one-time
+exception to avoid a trust/legal issue, and the agent was coached on plan
+terms. Any future refund request on this plan type should follow the standard
+non-refundable policy unless a similarly documented agent error exists - this
+ticket should not be cited as if refunds are generally available on this
+plan.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_7" model="helpdesk.ticket">
+        <field name="name">Two-factor authentication locks users out after phone number change</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team2"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_name">Ines Duarte</field>
+        <field name="partner_email">ines.duarte@example.com</field>
+        <field name="description" type="html">
+<p>RESOLVED - root cause: changing a phone number didn't migrate the 2FA
+device binding, permanently locking the user out. Fixed with a manual reset
+process short-term, and a new self-service re-enrollment flow long-term.</p>
+<p>Customer changed their phone number in account settings and was
+immediately locked out of 2FA with no recovery option shown. Manually reset
+their 2FA via admin tools to restore access same day. Recognized this would
+recur for any user changing numbers, so a proper self-service flow was built
+to replace the manual process.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_8" model="helpdesk.ticket">
+        <field name="name">Duplicate charge on card for one order</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team1"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_id" ref="res_partner_repeat_customer"/>
+        <field name="description" type="html">
+<p>RESOLVED - root cause: a payment webhook retried after a timeout without an
+idempotency key, charging the card twice for one order. Refunded the
+duplicate and engineering added idempotency-key handling to the webhook so
+retries can't double-charge.</p>
+<p>Customer saw two identical charges for a single order on their statement.
+Confirmed both charges in the payment processor dashboard - same order id,
+seconds apart, consistent with a webhook retry. Refunded the duplicate
+immediately.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_9" model="helpdesk.ticket">
+        <field name="name">Export missing rows for our monthly report</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team2"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_id" ref="res_partner_repeat_customer"/>
+        <field name="description" type="html">
+<p>RESOLVED - same root cause family as the large-dataset CSV export bug: rows
+were dropped past a certain size threshold in a scheduled export job. Fixed by
+applying the same corrected batch-offset logic to the reporting export.</p>
+<p>Customer's monthly report was missing the last batch of rows. Traced to the
+same pagination issue found in a prior export bug and fixed with the same
+patch.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_10" model="helpdesk.ticket">
+        <field name="name">Still waiting on the refund from the duplicate charge</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team1"/>
+        <field name="partner_id" ref="res_partner_repeat_customer"/>
+        <field name="description" type="html">
+<p>Following up - the duplicate charge from the earlier ticket was confirmed
+for refund but it has not appeared on my statement yet. Please check on the
+status.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_11" model="helpdesk.ticket">
+        <field name="name">Mobile app crashes on startup after latest update</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team2"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_name">Sana Malik</field>
+        <field name="partner_email">sana.malik@example.com</field>
+        <field name="description" type="html">
+<p>RESOLVED - root cause: a memory leak in the image-caching library caused
+out-of-memory crashes on startup after the latest update. Patched in the next
+release; the workaround in the meantime is clearing the app cache.</p>
+<p>Multiple users reported the app crashing immediately on open after
+updating. Crash logs pointed to out-of-memory kills tied to the image-caching
+library. Identified a known leak in that library version, patched and shipped
+in the next release. Told affected users that clearing the app cache resolves
+it immediately while waiting for the update to roll out.</p>
+        </field>
+    </record>
+
+    <record id="demo_ticket_12" model="helpdesk.ticket">
+        <field name="name">Sales demo request for the analytics add-on</field>
+        <field name="team_id" ref="helpdesk.helpdesk_team1"/>
+        <field name="stage_id" ref="helpdesk.stage_solved"/>
+        <field name="partner_name">Dockside Freight Co.</field>
+        <field name="partner_email">procurement@docksidefreight.example</field>
+        <field name="description" type="html">
+<p>RESOLVED - handled by Sales, not a support fix. Customer wanted a live demo
+of the analytics add-on before renewing at the higher tier. Scheduled and
+delivered a demo with the sales team; customer proceeded with the upgrade.</p>
+        </field>
+    </record>
+
+    </data>
+</odoo>

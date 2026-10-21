@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_ai_sorting_schedule_review_wizard,schedule.review.wizard,model_helpdesk_ai_sorting_schedule_review_wizard,base.group_user,1,1,1,1

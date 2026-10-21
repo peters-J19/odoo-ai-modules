@@ -1,0 +1,26 @@
+// Makes the "Search" top-bar menu entry read as the app's main call to
+// action rather than a plain nav link - this module's whole purpose is that
+// one click, so it shouldn't look like an ordinary menu item among others.
+
+.o_nav_entry[data-menu-xmlid="semantic_record_search.menu_semantic_search"] {
+    position: fixed !important;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    background-color: #0dad32 !important;
+    border: 2px solid rgb(14, 148, 45) !important;
+    border-radius: 8px !important;
+    padding: 12px 30px !important;
+    color: #fff !important;
+    font-weight: bold !important;
+    font-size: 1.2rem !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45) !important;
+
+    &:hover {
+        background-color: #0c972c !important;
+        border: 2px solid rgb(13, 134, 42) !important;
+        color: #fff !important;
+    }
+}

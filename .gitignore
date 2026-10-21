@@ -1,0 +1,14 @@
+# Local tooling
+.claude/
+CLAUDE.md
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Odoo
+*.log

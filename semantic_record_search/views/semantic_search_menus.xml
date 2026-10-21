@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_semantic_record_search_root" name="Semantic Record Search"
+              action="action_semantic_search_home" sequence="100"/>
+    <menuitem id="menu_semantic_search" name="Search" parent="menu_semantic_record_search_root"
+              action="action_semantic_search_wizard" sequence="10"/>
+</odoo>

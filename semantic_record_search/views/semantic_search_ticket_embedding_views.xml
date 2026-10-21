@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        SRS's own error-recovery banner on the standard Helpdesk ticket form -
+        deliberately owned by this module, not helpdesk_ai_sorting, since it's
+        about SRS's own embedding lifecycle and should work the same way even
+        if helpdesk_ai_sorting were ever uninstalled.
+    -->
+    <record id="helpdesk_ticket_view_form_srs_embedding" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.srs.embedding</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert"
+                     invisible="srs_embedding_state != 'error'">
+                    <span>
+                        This ticket's semantic embedding could not be generated -
+                        it will be skipped by semantic search until retried.
+                        Check the server logs for the underlying error.
+                    </span>
+                    <button name="action_retry_embedding" type="object"
+                            string="Retry Embedding" class="btn-link"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

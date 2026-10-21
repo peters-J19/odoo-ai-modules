@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="helpdesk_ticket_view_form_ai_triage" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.ai.triage</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button name="action_run_ai_triage" type="object"
+                        string="Run AI Triage"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="before">
+                <div class="alert alert-warning" role="alert"
+                     invisible="ai_triage_state != 'error'">
+                    AI triage could not be completed for this ticket. Check the
+                    server logs, then use "Run AI Triage" to retry.
+                </div>
+                <group string="AI Triage" name="ai_triage">
+                    <field name="ai_triage_level"/>
+                    <field name="ai_summary"/>
+                    <label for="ai_suggested_team_id"/>
+                    <div class="o_row">
+                        <field name="ai_suggested_team_id"/>
+                        <button name="action_apply_suggested_team" type="object"
+                                string="Apply" class="btn-link"
+                                invisible="not ai_suggested_team_id or ai_suggested_team_id == team_id"/>
+                    </div>
+                    <field name="ai_reasoning"/>
+                    <field name="ai_triage_state"/>
+                </group>
+                <field name="ai_analysis_dismissed" invisible="1"/>
+                <div class="alert alert-info d-flex justify-content-between align-items-center" role="alert"
+                     invisible="ai_triage_level != 'urgent_complex' or ai_analysis_state != 'to_process' or ai_analysis_dismissed">
+                    <span>Tier 1 flagged this ticket as urgent/complex.</span>
+                    <div>
+                        <button name="action_run_ai_analysis" type="object" string="Run AI Analysis" class="btn-link"/>
+                        <button name="action_dismiss_analysis_banner" type="object" string="Dismiss" class="btn-link text-muted"/>
+                    </div>
+                </div>
+            </xpath>
+
+            <xpath expr="//page[@name='extra_info']" position="after">
+                <page string="AI Analysis" name="ai_analysis">
+                    <div class="d-flex gap-2 mb-3">
+                        <button name="action_run_ai_analysis" type="object" string="Run AI Analysis"
+                                class="btn-primary"
+                                invisible="ai_triage_level in ('routine', 'needs_attention')"/>
+                        <button name="action_run_ai_analysis" type="object" string="Run AI Analysis"
+                                class="btn-primary"
+                                confirm="Tier 1 triage considers this a lower-complexity ticket — deep analysis may be an unnecessary use of tokens. Run anyway?"
+                                invisible="ai_triage_level not in ('routine', 'needs_attention')"/>
+                        <field name="ai_analysis_state" nolabel="1"/>
+                    </div>
+                    <group>
+                        <field name="ai_suggested_assignee_id"/>
+                        <field name="ai_suggested_deadline"/>
+                    </group>
+                    <button name="action_schedule_review" type="object" string="Schedule Review"
+                            class="btn-secondary mb-3"/>
+                    <field name="ai_analysis" readonly="1"/>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

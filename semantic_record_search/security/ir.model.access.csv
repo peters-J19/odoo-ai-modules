@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_semantic_record_search_semantic_search_wizard,semantic_search.wizard,model_semantic_record_search_semantic_search_wizard,base.group_user,1,1,1,1

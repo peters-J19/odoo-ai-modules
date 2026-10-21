@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        Tier 1 triage runner.
+    -->
+    <record id="ir_cron_ai_triage" model="ir.cron">
+        <field name="name">Helpdesk AI Sorting: Triage tickets</field>
+        <field name="model_id" ref="helpdesk.model_helpdesk_ticket"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_run_ai_triage()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+    </record>
+</odoo>
