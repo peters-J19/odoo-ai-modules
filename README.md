@@ -21,6 +21,8 @@ Sorts incoming tickets so the expensive AI work only happens where it's worth it
 
 Meaning-based search for Odoo records, so a query like "customer says checkout breaks after a discount code" finds "Checkout returns 500 error after promo code applied" without sharing keywords.
 
+**The idea.** An embedding model turns a piece of text into a long list of numbers that captures its meaning, so texts that mean similar things end up close together. Comparing those numbers finds related records even when they share no words, and a similarity cutoff decides how close counts as a match.
+
 - **Reusable mixin.** Any model that inherits `semantic.search.mixin` gets an embedding field, re-embedding only when its relevant text actually changes, a batched background cron for embedding, and `_find_similar()` for lookups.
 - **Storage and speed.** Embeddings come from OpenAI `text-embedding-3-small` and are stored with OCA's `field_vector` in a pgvector column, with an ivfflat index for fast cosine-similarity search.
 - **Tuned threshold.** The similarity cutoff (0.42) was set by testing 100 queries against the demo tickets: 38 reworded queries with a known correct match and 62 designed to match nothing.
