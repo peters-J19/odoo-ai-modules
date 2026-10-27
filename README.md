@@ -40,7 +40,3 @@ Tier 2's "similar past tickets" lookup tries semantic search first, reusing each
 - An OpenAI API key set in Odoo's AI settings
 
 Installing `helpdesk_ai_sorting` also installs `semantic_record_search`. Both include demo data.
-
-## License
-
-[LGPL-3.0](LICENSE)
