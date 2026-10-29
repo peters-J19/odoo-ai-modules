@@ -1,6 +1,6 @@
 # Odoo AI Modules
 
-Two Odoo 19 modules that call AI models at runtime: a two-tier AI triage system for helpdesk tickets, and a reusable semantic search component built on PostgreSQL and pgvector. I built them while training in AI-integrated Odoo development, using demo data only.
+Two Odoo 19 modules that call AI models at runtime: a two-tier AI triage system for helpdesk tickets, and a reusable semantic search component built in Odoo on PostgreSQL and pgvector. I built them while training in AI-integrated Odoo development, using demo data only.
 
 | Module | What it does |
 | --- | --- |
